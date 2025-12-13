@@ -188,6 +188,7 @@ git push -u origin main
 
 4. **Add repository metadata**:
    - Add topics: `aws`, `react`, `typescript`, `serverless`, `bedrock`, `student-project`
+    aws react typescript serverless bedrock student-project
    - Update description if needed
 
 5. **Commit regularly**:
@@ -273,7 +274,7 @@ aws dynamodb batch-write-item --request-items file://books-data.json
    - Partition key: `id` (String)
    - Index name: `id-index`
    - Click "Create index"
-
+stopped here - 14 dec 1:38 am. continue from here, Saadiq H.
 ### Day 3-4: Implement Books API Lambda Functions
 
 #### Lambda Function: get-books
