@@ -342,7 +342,7 @@ export const handler = async (event) => {
 ```bash
 curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/books
 ```
-
+stopped here 15 dec 2025 12:00 am- saadiq H
 #### Lambda Function: get-book (single book)
 
 1. **Create Lambda**: `library-get-book`
