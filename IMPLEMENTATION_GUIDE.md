@@ -417,6 +417,7 @@ curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/books/1
 Follow the same pattern to create:
 
 - `library-get-reading-lists` (GET /reading-lists)
+<!--readinglists left empty by SH, currently returns empty when curl/readinglists is run, it shoudl be like that since theres nothing set yet- 18 dec 2026, 6pm. -->
 - `library-create-reading-list` (POST /reading-lists)
 - `library-update-reading-list` (PUT /reading-lists/{id})
 - `library-delete-reading-list` (DELETE /reading-lists/{id})
@@ -425,6 +426,8 @@ Follow the same pattern to create:
 
 ✅ **Week 2 Checkpoint**: All Books and Reading Lists endpoints working!
 
+done with week 2. SH
+omo make una carry on abeg i don tire, 18 dec 2026 7:32pm 
 ---
 
 ## Week 3: Authentication with Cognito
