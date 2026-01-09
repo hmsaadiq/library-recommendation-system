@@ -1,5 +1,6 @@
 import { Book, ReadingList, Review, Recommendation } from '@/types';
 import { mockBooks, mockReadingLists } from './mockData';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 /**
  * ============================================================================
@@ -41,35 +42,25 @@ import { mockBooks, mockReadingLists } from './mockData';
  */
 
 // TODO: Uncomment this after deploying API Gateway (Week 2, Day 4)
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
 /**
- * TODO: Implement this function in Week 3, Day 4
- *
- * This function gets the JWT token from Cognito and adds it to API requests.
- *
- * Implementation:
- * 1. Import: import { fetchAuthSession } from 'aws-amplify/auth';
- * 2. Get session: const session = await fetchAuthSession();
- * 3. Extract token: const token = session.tokens?.idToken?.toString();
- * 4. Return headers with Authorization: Bearer {token}
- *
- * See IMPLEMENTATION_GUIDE.md - Week 3, Day 5-7 for complete code.
+ * Get authentication headers with JWT token from Cognito
  */
-// async function getAuthHeaders() {
-//   try {
-//     const session = await fetchAuthSession();
-//     const token = session.tokens?.idToken?.toString();
-//     return {
-//       'Authorization': `Bearer ${token}`,
-//       'Content-Type': 'application/json'
-//     };
-//   } catch {
-//     return {
-//       'Content-Type': 'application/json'
-//     };
-//   }
-// }
+async function getAuthHeaders() {
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+    return {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+  } catch {
+    return {
+      'Content-Type': 'application/json'
+    };
+  }
+}
 
 /**
  * Get all books from the catalog
@@ -89,10 +80,15 @@ import { mockBooks, mockReadingLists } from './mockData';
  * Expected response: Array of Book objects from DynamoDB
  */
 export async function getBooks(): Promise<Book[]> {
-  // TODO: Remove this mock implementation after deploying Lambda
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockBooks), 500);
-  });
+  const response = await fetch(`${API_BASE_URL}/books`);
+  if (!response.ok) throw new Error('Failed to fetch books');
+  const data = await response.json();
+  // Handle Lambda response format - your Lambda returns {statusCode, headers, body}
+  // but API Gateway should unwrap this automatically
+  if (data.statusCode && data.body) {
+    return JSON.parse(data.body);
+  }
+  return data;
 }
 
 /**
@@ -113,13 +109,10 @@ export async function getBooks(): Promise<Book[]> {
  * Expected response: Single Book object or null if not found
  */
 export async function getBook(id: string): Promise<Book | null> {
-  // TODO: Remove this mock implementation after deploying Lambda
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const book = mockBooks.find((b) => b.id === id);
-      resolve(book || null);
-    }, 300);
-  });
+  const response = await fetch(`${API_BASE_URL}/books/${id}`);
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error('Failed to fetch book');
+  return response.json();
 }
 
 /**
@@ -262,10 +255,14 @@ export async function getRecommendations(): Promise<Recommendation[]> {
  * Expected response: Array of ReadingList objects for the authenticated user
  */
 export async function getReadingLists(): Promise<ReadingList[]> {
-  // TODO: Remove this mock implementation after deploying Lambda
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockReadingLists), 500);
+  const headers = await getAuthHeaders();
+  const response = await fetch(`${API_BASE_URL}/reading-lists`, {
+    headers
   });
+  if (!response.ok) throw new Error('Failed to fetch reading lists');
+  const data = await response.json();
+  // Handle Lambda response format
+  return typeof data.body === 'string' ? JSON.parse(data.body) : data;
 }
 
 /**
@@ -295,18 +292,16 @@ export async function getReadingLists(): Promise<ReadingList[]> {
 export async function createReadingList(
   list: Omit<ReadingList, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<ReadingList> {
-  // TODO: Remove this mock implementation after deploying Lambda
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newList: ReadingList = {
-        ...list,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-      resolve(newList);
-    }, 500);
+  const headers = await getAuthHeaders();
+  const response = await fetch(`${API_BASE_URL}/reading-lists`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(list)
   });
+  if (!response.ok) throw new Error('Failed to create reading list');
+  const data = await response.json();
+  // Handle Lambda response format
+  return typeof data.body === 'string' ? JSON.parse(data.body) : data;
 }
 
 /**
