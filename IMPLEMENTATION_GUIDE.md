@@ -642,7 +642,7 @@ export async function createReadingList(
 ```
 
 ✅ **Week 3 Checkpoint**: Users can register, login, and make authenticated API calls!
-
+completed week 3, some api functions yet to be implemented but its fine regardless. the examples above were implemented. SH
 ---
 
 ## Week 4: AI Recommendations & Deployment
