@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/common/Button';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { BookGrid } from '@/components/books/BookGrid';
-import { getRecommendations, getBook } from '@/services/api';
+import { getRecommendations } from '@/services/api';
 import { Book, Recommendation } from '@/types';
 import { handleApiError } from '@/utils/errorHandling';
 

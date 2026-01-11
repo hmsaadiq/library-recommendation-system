@@ -1,5 +1,4 @@
 import { Book, ReadingList, Review, Recommendation } from '@/types';
-import { mockBooks, mockReadingLists } from './mockData';
 import { fetchAuthSession } from 'aws-amplify/auth';
 
 /**
@@ -47,19 +46,22 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000
 /**
  * Get authentication headers with JWT token from Cognito
  */
-async function getAuthHeaders() {
+async function getAuthHeaders(): Promise<Record<string, string>> {
   try {
     const session = await fetchAuthSession();
     const token = session.tokens?.idToken?.toString();
-    return {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    };
+    if (token) {
+      return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+    }
   } catch {
-    return {
-      'Content-Type': 'application/json'
-    };
+    // Fall through to default headers
   }
+  return {
+    'Content-Type': 'application/json'
+  };
 }
 
 /**

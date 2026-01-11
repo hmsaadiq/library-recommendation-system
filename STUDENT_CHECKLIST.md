@@ -245,27 +245,27 @@ Use this checklist to track your progress through the 4-week project.
 **Step 2: Set Up CI/CD Pipeline with CodePipeline**
 
 - [x] Go to CodePipeline Console
-- [ ] Create new pipeline: `library-frontend-pipeline`
-- [ ] Configure source stage:
+- [x] Create new pipeline: `library-frontend-pipeline`
+- [x] Configure source stage:
   - Source provider: GitHub (Version 2)
   - Connect to GitHub account
   - Select your repository: `library-recommendation-system`
   - Branch: `main`
   - Change detection: GitHub webhooks
-- [ ] Configure build stage:
+- [x] Configure build stage:
   - Build provider: AWS CodeBuild
   - Create new build project: `library-frontend-build`
   - Environment: Managed image, Ubuntu, Standard runtime, Latest image
   - Service role: Create new service role
-- [ ] Configure deploy stage:
+- [x] Configure deploy stage:
   - Deploy provider: Amazon S3
   - Bucket: Your S3 bucket name
   - Extract files before deploy: Yes
-- [ ] Review and create pipeline
+- [x] Review and create pipeline
 
 **Step 3: Create buildspec.yml**
 
-- [ ] Create `buildspec.yml` in project root with:
+- [x] Create `buildspec.yml` in project root with:
 
 ```yaml
 version: 0.2
@@ -284,7 +284,7 @@ artifacts:
   base-directory: dist
 ```
 
-- [ ] Commit and push buildspec.yml to GitHub
+- [x] Commit and push buildspec.yml to GitHub
 - [ ] Watch pipeline execute automatically
 - [ ] Verify build succeeds
 - [ ] Verify deployment to S3
