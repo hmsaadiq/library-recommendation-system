@@ -6,45 +6,45 @@ Use this checklist to track your progress through the 4-week project.
 
 ### Environment Setup
 
-- [ ] Install Node.js 20+ (`node --version`)
-- [ ] Install npm 10+ (`npm --version`)
-- [ ] Clone project repository
-- [ ] Run `npm install` successfully
-- [ ] Run `npm run dev` and see app at http://localhost:5173
-- [ ] Explore all pages (Home, Books, Recommendations, Reading Lists, Admin)
-- [ ] Read QUICK_START.md
-- [ ] Read PROJECT_TIMELINE_4WEEKS.md
+- [x] Install Node.js 20+ (`node --version`)
+- [x] Install npm 10+ (`npm --version`)
+- [x] Clone project repository
+- [x] Run `npm install` successfully
+- [x] Run `npm run dev` and see app at http://localhost:5173
+- [x] Explore all pages (Home, Books, Recommendations, Reading Lists, Admin)
+- [x] Read QUICK_START.md
+- [x] Read PROJECT_TIMELINE_4WEEKS.md
 
 ### AWS Account Setup
 
-- [ ] Create AWS account at https://aws.amazon.com
-- [ ] Set up billing alert for $10 USD
-- [ ] Create IAM user for development
-- [ ] Install AWS CLI (`aws --version`)
-- [ ] Configure AWS CLI (`aws configure`)
-- [ ] Verify AWS CLI works (`aws sts get-caller-identity`)
+- [x] Create AWS account at https://aws.amazon.com
+- [x] Set up billing alert for $10 USD
+- [x] Create IAM user for development
+- [x] Install AWS CLI (`aws --version`)
+- [x] Configure AWS CLI (`aws configure`)
+- [x] Verify AWS CLI works (`aws sts get-caller-identity`)
 
 ### First Lambda Function
 
-- [ ] Create Lambda function: `hello-world-test`
-- [ ] Deploy and test Lambda in AWS Console
-- [ ] Create API Gateway REST API
-- [ ] Create `/hello` resource and GET method
-- [ ] Enable CORS on API Gateway
-- [ ] Deploy API to `dev` stage
-- [ ] Test with curl: `curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/hello`
-- [ ] See successful response with message and timestamp
+- [x] Create Lambda function: `hello-world-test`
+- [x] Deploy and test Lambda in AWS Console
+- [x] Create API Gateway REST API
+- [x] Create `/hello` resource and GET method
+- [x] Enable CORS on API Gateway
+- [x] Deploy API to `dev` stage
+- [x] Test with curl: `curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/hello`
+- [x] See successful response with message and timestamp
 
 ### Create GitHub Repository
 
-- [ ] Create public GitHub repository: `library-recommendation-system`
-- [ ] Initialize git in project: `git init`
-- [ ] Verify .gitignore exists (already provided in project)
-- [ ] Make initial commit: `git add . && git commit -m "Initial commit: Week 1 complete"`
-- [ ] Push to GitHub: `git remote add origin <your-repo-url> && git push -u origin main`
-- [ ] Add repository description: "AI-powered library book recommendation system (CENG413 Project)"
-- [ ] Add topics: `aws`, `react`, `typescript`, `serverless`, `student-project`
-- [ ] Commit your progress daily throughout the project
+- [x] Create public GitHub repository: `library-recommendation-system`
+- [x] Initialize git in project: `git init`
+- [x] Verify .gitignore exists (already provided in project)
+- [x] Make initial commit: `git add . && git commit -m "Initial commit: Week 1 complete"`
+- [x] Push to GitHub: `git remote add origin <your-repo-url> && git push -u origin main`
+- [x] Add repository description: "AI-powered library book recommendation system (CENG413 Project)"
+- [x] Add topics: `aws`, `react`, `typescript`, `serverless`, `student-project`
+- [x] Commit your progress daily throughout the project
 
 **✅ Week 1 Complete!** You have a working Lambda function and your project is on GitHub.
 
@@ -54,18 +54,18 @@ Use this checklist to track your progress through the 4-week project.
 
 ### DynamoDB Setup
 
-- [ ] Create DynamoDB table: `Books`
+- [x] Create DynamoDB table: `Books`
   - Partition key: `id` (String)
   - On-demand pricing
-- [ ] Create DynamoDB table: `ReadingLists`
+- [x] Create DynamoDB table: `ReadingLists`
   - Partition key: `userId` (String)
   - Sort key: `id` (String)
   - On-demand pricing
-- [ ] Create Global Secondary Index on ReadingLists: `id-index`
-- [ ] Copy books from `src/services/mockData.ts`
-- [ ] Convert to DynamoDB JSON format
-- [ ] Load books into DynamoDB using AWS CLI
-- [ ] Verify data in DynamoDB Console
+- [x] Create Global Secondary Index on ReadingLists: `id-index`
+- [x] Copy books from `src/services/mockData.ts`
+- [x] Convert to DynamoDB JSON format
+- [x] Load books into DynamoDB using AWS CLI
+- [x] Verify data in DynamoDB Console
 
 ### Books API Lambda Functions
 
@@ -227,24 +227,24 @@ Use this checklist to track your progress through the 4-week project.
 
 **Step 1: Create S3 Bucket and CloudFront**
 
-- [ ] Go to S3 Console
-- [ ] Create bucket: `library-app-frontend-[your-name]`
-- [ ] Uncheck "Block all public access"
-- [ ] Enable static website hosting
+- [x] Go to S3 Console
+- [x] Create bucket: `library-app-frontend-[your-name]`
+- [x] Uncheck "Block all public access"
+- [x] Enable static website hosting
   - Index document: `index.html`
   - Error document: `index.html`
-- [ ] Add bucket policy for public read access
-- [ ] Go to CloudFront Console
-- [ ] Create distribution
+- [x] Add bucket policy for public read access
+- [x] Go to CloudFront Console
+- [x] Create distribution
   - Origin: Your S3 bucket
   - Redirect HTTP to HTTPS
   - Default root object: `index.html`
-- [ ] Wait for CloudFront deployment (10-15 minutes)
-- [ ] Update CORS in API Gateway to allow CloudFront URL
+- [x] Wait for CloudFront deployment (10-15 minutes)
+- [x] Update CORS in API Gateway to allow CloudFront URL
 
 **Step 2: Set Up CI/CD Pipeline with CodePipeline**
 
-- [ ] Go to CodePipeline Console
+- [x] Go to CodePipeline Console
 - [ ] Create new pipeline: `library-frontend-pipeline`
 - [ ] Configure source stage:
   - Source provider: GitHub (Version 2)

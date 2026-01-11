@@ -826,7 +826,8 @@ export async function getRecommendations(query: string): Promise<Recommendation[
 
 3. **Wait for deployment** (10-15 minutes)
 
-4. **Note your CloudFront URL**: `https://d123abc.cloudfront.net`
+4. **Note your CloudFront URL**: https://d2me98p562k719.cloudfront.net
+d2me98p562k719.cloudfront.net
 
 5. **Update CORS in API Gateway**:
    - Add CloudFront URL to allowed origins
